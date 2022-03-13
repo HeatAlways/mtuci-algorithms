@@ -1,0 +1,5 @@
+def foo(a: int):
+	smth = [[1, 2], [3, 4, 5, 6], [2]]
+	smth[0][1] = 12
+	if smth[1][2 == 5:
+		print([i for i in range(5)])

@@ -1,0 +1,23 @@
+object CoreComponentHolder: ComponentHolder<
+        CoreApi, CoreDependencies
+> {
+    private var component: CoreComponent? = null
+
+    override fun init(dependencies: CoreDependencies) {
+        if (component == null) {
+            synchronized(this) {
+                if (component == null) {
+                    component = CoreComponent.initAndGet(dependencies)
+                }
+            }
+        }
+    }
+
+    override fun get(): CoreApi = getComponent()
+
+    internal fun getComponent() = requireNotNull(component)
+
+    override fun reset() {
+        component = null
+    }
+}
